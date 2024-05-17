@@ -1,0 +1,12 @@
+yolo_model:
+
+  config_file:
+    name: yolo3_tiny_v3.cfg
+  weight_file:
+    name: YOLOv3Tiny_v2.weights
+  threshold:
+    value: 0.3
+  detection_classes:
+    names:
+      - Manure
+      - Person

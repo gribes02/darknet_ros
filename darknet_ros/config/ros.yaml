@@ -19,7 +19,7 @@ publishers:
   bounding_boxes:
     topic: /darknet_ros/bounding_boxes
     queue_size: 1
-    latch: false
+    latch: true
 
   detection_image:
     topic: /darknet_ros/detection_image

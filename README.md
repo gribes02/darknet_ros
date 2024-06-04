@@ -34,7 +34,7 @@ To address this issue, the model was then run directly on the robot. Unfortunate
 
 To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. This conversion enabled the model to run on the robot at 5 fps, meeting the desired frame rate and providing smooth visualization.
 
-[ObjectDetection](images/ObjectDetection.jpeg)
+![ObjectDetection](images/ObjectDetection.jpeg)
 
 **Add a table of the fps of YOLOv3 and tiny-YOLOv3**
 ## Results

@@ -34,8 +34,54 @@ To address this issue, the model was then run directly on the robot. Unfortunate
 
 To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. This conversion enabled the model to run on the robot at 5 fps, meeting the desired frame rate and providing smooth visualization.
 
+![ObjectDetection](images/ObjectDetection.jpeg)
+
 **Add a table of the fps of YOLOv3 and tiny-YOLOv3**
 ## Results
+
+**Overall Metrics and Average IoU**
+| IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
+|---------------|-----------|--------|----------|-----|-----|-----|-----------------|
+| 5%            | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 10%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 15%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 20%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 25%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 30%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
+| 35%           | 0.99      | 0.98   | 0.99     | 714 | 9   | 11  | 99.45           |
+| 40%           | 0.99      | 0.98   | 0.99     | 714 | 9   | 11  | 99.43           |
+| 45%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.31           |
+| 50%           | 0.99      | 0.98   | 0.99     | 714 | 9   | 11  | 99.23           |
+| 55%           | 0.98      | 0.98   | 0.98     | 709 | 14  | 16  | 98.40           |
+| 60%           | 0.96      | 0.96   | 0.96     | 696 | 27  | 29  | 96.85           |
+| 65%           | 0.92      | 0.92   | 0.92     | 665 | 58  | 60  | 91.65           |
+| 70%           | 0.86      | 0.86   | 0.86     | 625 | 98  | 100 | 85.38           |
+| 75%           | 0.76      | 0.76   | 0.76     | 553 | 170 | 172 | 71.32           |
+| 80%           | 0.60      | 0.60   | 0.60     | 434 | 289 | 291 | 47.13           |
+| 85%           | 0.43      | 0.43   | 0.43     | 310 | 413 | 415 | 24.18           |
+
+
+**Class-wise Average Precision**
+| IoU Threshold | Manure (%) | Person (%) |
+|---------------|------------|------------|
+| 5%            | 99.86      | 99.20      |
+| 10%           | 99.86      | 99.20      |
+| 15%           | 99.86      | 99.20      |
+| 20%           | 99.86      | 99.20      |
+| 25%           | 99.86      | 99.20      |
+| 30%           | 99.86      | 99.20      |
+| 35%           | 99.70      | 99.20      |
+| 40%           | 99.70      | 99.16      |
+| 45%           | 99.70      | 98.93      |
+| 50%           | 99.53      | 98.93      |
+| 55%           | 98.71      | 98.08      |
+| 60%           | 95.62      | 98.08      |
+| 65%           | 88.62      | 94.68      |
+| 70%           | 80.79      | 89.97      |
+| 75%           | 68.60      | 74.03      |
+| 80%           | 50.39      | 43.88      |
+| 85%           | 33.62      | 14.74      |
+
 
 ## Discussion and Limitations
 

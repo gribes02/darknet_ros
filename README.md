@@ -59,6 +59,8 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 | 75%           | 0.76      | 0.76   | 0.76     | 553 | 170 | 172 | 71.32           |
 | 80%           | 0.60      | 0.60   | 0.60     | 434 | 289 | 291 | 47.13           |
 | 85%           | 0.43      | 0.43   | 0.43     | 310 | 413 | 415 | 24.18           |
+| 90%           | 0.18      | 0.18   | 0.18     | 127 | 596 | 598 | 5.07            |
+| 95%           | 0.02      | 0.02   | 0.02     | 15  | 708 | 710 | 0.17            |
 
 
 **Class-wise Average Precision**
@@ -81,6 +83,8 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 | 75%           | 68.60      | 74.03      |
 | 80%           | 50.39      | 43.88      |
 | 85%           | 33.62      | 14.74      |
+| 90%           | 9.09       | 1.06       |
+| 95%           | 0.35       | 0.00       |
 
 ![F1Score](images/F1Score.png)
 

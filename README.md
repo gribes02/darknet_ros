@@ -86,7 +86,7 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 | 90%           | 9.09       | 1.06       |
 | 95%           | 0.35       | 0.00       |
 
-![F1Score](images/F1Score.png)
+![F1Score](images/f1scoreBoth.png)
 
 
 ----

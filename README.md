@@ -75,7 +75,7 @@ The accuracy of the trained models was tested on the test set, which was done on
 
 ![F1Score](images/f1_iou.png)
 
-**Overall Performance Metrics of YOLO v3-Tiny**
+### Overall Performance Metrics
 <table>
 <tr>
 <td style="padding-right: 100px;">
@@ -189,7 +189,8 @@ However, as hypothesized, YOLO v3 performs detects the objects more precisely th
 ### Discussion
 - Maybe we should have pre-trained the yolo models on datasets such as coco or ImageNet and fine-tuned on our own dataset to achieve better performance. Additionally, these pre-trained models will already be very good at detecting people, so the resulting model might be much better at detecting people.
 - We randomly assigned images to the test and train dataset. This combined with the fact that there are duplications of images with different brightnesses, could mean that the model has overtrained and learned images that are very similar to the test set.
-- 
+
+The goal of this blog was to find out whether real-time object detection is feasible in small robots that do not carry large GPUs. After implenting object detection models of varying sizes, we found that by implementing a small ConvNet such as YOLO v3-Tiny, an average frame rate of around ... FPS can be achieved, while still having reasonably precise object detection. Implementing larger models like YOLO v3 results reduces the frame rate, but generates more accurate bounding boxes.
 
 ### Limitations
 

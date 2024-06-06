@@ -26,7 +26,9 @@ Nowadays, in robotics in order to perform obstacle avoidance other sensors such 
 ## Implementation 
 
 ### Dataset
-A new dataset was created to train the models on which contains images of manure and people. However, note that for praciticality, the manure was 3D printed. All the images in the dataset were made using the camera in the robot, such that the images are representative to what the robot can expect. Additionally, images were taken in various different environments with different surfaces and different lighting to make the models robust to changes in environment.
+A new dataset containing images of manure and people was created to train the models on. However, note that for praciticality, the manure was 3D printed. All the images in the dataset were made using the camera in the robot, such that the images are representative to what the robot can expect. Additionally, images were taken in various different environments with different surfaces and different lighting conditions to make the models robust to changes in environment. 
+
+Approximately 600 images were taken. However, to increase the size of the dataset, these images were augmented by increasing and decreasing the brightness by 30%. In total, the complete dataset constituted 1783 images. 80% Of these images were randomly assigned to the training set, whereas the other 20% was assigned to the test set. 
 
 ### Training 
 

@@ -50,8 +50,8 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 ## Results
 The accuracy of the trained models was tested on the test set, which was done on a laptop. [Figure 1](#F1Score) shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds.  Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. However, the graph also shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny, as also indicated by the orange bars. This demonstrates that YOLO v3 more accurately places the bounding boxes than YOLO v3-Tiny. Hence, although both models classify the images equally well, YOLO v3 sets the bounding boxes more precisely.
 
-**Overall Performance Metrics of YOLO v3-Tiny**
-| IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
+<!-- **Overall Performance Metrics of YOLO v3-Tiny** -->
+<!-- | IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
 |---------------|-----------|--------|----------|-----|-----|-----|-----------------|
 | 5%            | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
 | 10%           | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
@@ -71,10 +71,67 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 80%           | 0.60      | 0.60   | 0.60     | 434 | 289 | 291 | 47.13           |
 | 85%           | 0.43      | 0.43   | 0.43     | 310 | 413 | 415 | 24.18           |
 | 90%           | 0.18      | 0.18   | 0.18     | 127 | 596 | 598 | 5.07            |
-| 95%           | 0.02      | 0.02   | 0.02     | 15  | 708 | 710 | 0.17            |
+| 95%           | 0.02      | 0.02   | 0.02     | 15  | 708 | 710 | 0.17            | -->
 
+![F1Score](images/f1_iou.png)
 
-**Class-wise Average Precision of YOLO v3-Tiny**
+<table>
+<tr>
+<td style="padding-right: 100px;">
+
+**Overall Performance Metrics of YOLO v3-Tiny**
+| IoU Threshold | Precision | Recall | F1-score |
+|---------------|-----------|--------|----------|
+| 5%            | 0.99      | 0.99   | 0.99     |
+| 10%           | 0.99      | 0.99   | 0.99     |
+| 15%           | 0.99      | 0.99   | 0.99     |
+| 20%           | 0.99      | 0.99   | 0.99     |
+| 25%           | 0.99      | 0.99   | 0.99     |
+| 30%           | 0.99      | 0.99   | 0.99     |
+| 35%           | 0.99      | 0.98   | 0.99     |
+| 40%           | 0.99      | 0.98   | 0.99     |
+| 45%           | 0.99      | 0.99   | 0.99     |
+| 50%           | 0.99      | 0.98   | 0.99     |
+| 55%           | 0.98      | 0.98   | 0.98     |
+| 60%           | 0.96      | 0.96   | 0.96     |
+| 65%           | 0.92      | 0.92   | 0.92     |
+| 70%           | 0.86      | 0.86   | 0.86     |
+| 75%           | 0.76      | 0.76   | 0.76     |
+| 80%           | 0.60      | 0.60   | 0.60     |
+| 85%           | 0.43      | 0.43   | 0.43     |
+| 90%           | 0.18      | 0.18   | 0.18     |
+| 95%           | 0.02      | 0.02   | 0.02     |
+
+<td style="padding-left: 100px;">
+
+**Overall Performance Metrics of YOLO v3**
+| IoU Threshold | Precision | Recall | F1-score |
+|---------------|-----------|--------|----------|
+| 5%            | 1.00      | 0.99   | 0.99     |
+| 10%           | 1.00      | 0.99   | 0.99     |
+| 15%           | 1.00      | 0.99   | 0.99     |
+| 20%           | 1.00      | 0.99   | 0.99     |
+| 25%           | 1.00      | 0.99   | 0.99     |
+| 30%           | 1.00      | 0.99   | 0.99     |
+| 35%           | 1.00      | 0.99   | 0.99     |
+| 40%           | 1.00      | 0.99   | 0.99     |
+| 45%           | 1.00      | 0.99   | 0.99     |
+| 50%           | 1.00      | 0.99   | 0.99     |
+| 55%           | 0.99      | 0.99   | 0.99     |
+| 60%           | 0.96      | 0.96   | 0.96     |
+| 65%           | 0.95      | 0.94   | 0.95     |
+| 70%           | 0.92      | 0.91   | 0.92     |
+| 75%           | 0.86      | 0.86   | 0.86     |
+| 80%           | 0.75      | 0.75   | 0.75     |
+| 85%           | 0.60      | 0.60   | 0.60     |
+| 90%           | 0.33      | 0.33   | 0.33     |
+| 95%           | 0.08      | 0.08   | 0.08     |
+
+</td>
+</tr>
+</table>
+
+<!-- **Class-wise Average Precision of YOLO v3-Tiny**
 | IoU Threshold | Manure (%) | Person (%) |
 |---------------|------------|------------|
 | 5%            | 99.86      | 99.20      |
@@ -97,34 +154,8 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 9.09       | 1.06       |
 | 95%           | 0.35       | 0.00       |
 
-![F1Score](images/f1_iou.png)
 
-
-----
-### (Yolo V3 results)
-
-| IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
-|---------------|-----------|--------|----------|-----|-----|-----|-----------------|
-| 5%            | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 10%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 15%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 20%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 25%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 30%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 35%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 40%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 45%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 50%           | 1.00      | 0.99   | 0.99     | 718 | 3   | 7   | 99.79           |
-| 55%           | 0.99      | 0.99   | 0.99     | 715 | 6   | 10  | 99.53           |
-| 60%           | 0.96      | 0.96   | 0.96     | 695 | 26  | 30  | 96.56           |
-| 65%           | 0.95      | 0.94   | 0.95     | 685 | 36  | 40  | 94.48           |
-| 70%           | 0.92      | 0.91   | 0.92     | 663 | 58  | 62  | 91.94           |
-| 75%           | 0.86      | 0.86   | 0.86     | 620 | 101 | 105 | 87.33           |
-| 80%           | 0.75      | 0.75   | 0.75     | 544 | 177 | 181 | 80.07           |
-| 85%           | 0.60      | 0.60   | 0.60     | 433 | 288 | 292 | 60.73           |
-| 90%           | 0.33      | 0.33   | 0.33     | 236 | 485 | 489 | 27.35           |
-| 95%           | 0.08      | 0.08   | 0.08     | 57  | 664 | 668 | 2.02            |
-
+**Class-wise Average Precision of YOLO v3**
 | IoU Threshold | Manure (%) | Person (%) |
 |---------------|------------|------------|
 | 5%            | 99.67      | 99.91      |
@@ -145,7 +176,7 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 80%           | 67.90      | 92.24      |
 | 85%           | 44.97      | 76.48      |
 | 90%           | 13.97      | 40.73      |
-| 95%           | 1.54       | 2.50       |
+| 95%           | 1.54       | 2.50       | -->
 
 
 ## Discussion and Limitations

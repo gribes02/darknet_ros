@@ -1,6 +1,6 @@
 # Real-Time Object Detection and Avoidance in Robotics: Comparing Tiny-YOLOv3 and YOLOv3
 
-Authors: Guillem Ribes Espurz (5229154), Ricardo Ramautar 
+Authors: Guillem Ribes Espurz (5229154), Ricardo Ramautar (6109217)
 
 ## Table of Contents
 - [Abstract](#abstract)

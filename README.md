@@ -48,7 +48,9 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 
 
 ## Results
-The accuracy of the trained models was tested on the test set, which was done on a laptop. Figure 
+The accuracy of the trained models was tested on the test set, which was done on a laptop. [Figure 1](#F1Score) shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds.  Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. 
+
+However, the graph shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny as also indicated by the orange bars. This indicites that YOLO v3 more accurately places the bounding boxes than YOLO v3-Tiny.
 
 **Overall Performance Metrics of YOLO v3-Tiny**
 | IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |

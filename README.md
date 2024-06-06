@@ -143,6 +143,9 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 ## Discussion and Limitations
 
 ### Discussion
+- Maybe we should have pre-trained the yolo models on datasets such as coco or ImageNet and fine-tuned on our own dataset to achieve better performance. Additionally, these pre-trained models will already be very good at detecting people, so the resulting model might be much better at detecting people.
+- We randomly assigned images to the test and train dataset. This combined with the fact that there are duplications of images with different brightnesses, could mean that the model has overtrained and learned images that are very similar to the test set.
+- 
 
 ### Limitations
 

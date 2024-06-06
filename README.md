@@ -31,20 +31,26 @@ A new dataset containing images of manure and people was created to train the mo
 Approximately 600 images were taken. However, to increase the size of the dataset, these images were augmented by increasing and decreasing the brightness by 30%. In total, the complete dataset constituted 1783 images. 80% Of these images were randomly assigned to the training set, whereas the other 20% was assigned to the test set. 
 
 ### Training 
+Both YOLO v3 and YOLO v3-Tiny were trained on the training set over 10.000 batches with a batch size of 64 images.
 
 ### Robot Implementation 
-After obtaining the weights in the correct format (.weights) for the tiny-YOLOv3 model, the next step was to implement them on the robot. Initially, the darknetROS repository was utilized, as it supports the integration of tiny-YOLOv3 with ROS and requires only the implementation of the correct weights. The model was first tested on a laptop to evaluate its performance. As shown in the figure below, the model consistently detected manure and people. However, the frame rate achieved on the laptop was approximately 1.5 fps, resulting in noticeable lag during visualization.
+After obtaining the weights in the correct format (.weights) for the YOLO v3 models, the next step was to implement them on the robot. Initially, the darknetROS repository was utilized, as it supports the integration of YOLO v3 models with ROS and requires only the implementation of the correct weights. By running YOLO v3-Tiny directly on the robot via darknetROS, we achieved an average frame rate of merely 0.2 FPS.
 
-To address this issue, the model was then run directly on the robot. Unfortunately, this led to a significant drop in performance, with the frame rate plummeting to 0.2 fps, which was far from acceptable.
+<!-- For reference, the model was first tested on a laptop to evaluate its performance. As shown in the figure below, the model consistently detected manure and people correctly. However, the frame rate achieved on the laptop was approximately 1.5 fps, resulting in noticeable lag during visualization. This low frame rate was the result of the lag in images being sent from the robot to the laptop.
 
-To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. This conversion enabled the model to run on the robot at 5 fps, meeting the desired frame rate and providing smooth visualization.
+To address this issue, the model was then run directly on the robot. Unfortunately, this led to a significant drop in performance, with the frame rate plummeting to 0.2 fps, which was far from acceptable. -->
+
+To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. By taking better advantage of the robot's hardware, a much greater frame rate could be achieved. When running YOLO v3 on the robot using ncnn, an average frame rate of 3.92 FPS was achieved with a standard deviation of 0.47 FPS.
 
 ![ObjectDetection](images/ObjectDetection.jpeg)
 
-**Add a table of the fps of YOLOv3 and tiny-YOLOv3**
-## Results
+<span style="color: red;"><strong>Add a table of the fps of YOLOv3 and tiny-YOLOv3</strong></span>
 
-**Overall Metrics and Average IoU**
+
+## Results
+The accuracy of the trained models was tested on the test set, which was done on a laptop. Figure 
+
+**Overall Performance Metrics of YOLO v3-Tiny**
 | IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
 |---------------|-----------|--------|----------|-----|-----|-----|-----------------|
 | 5%            | 0.99      | 0.99   | 0.99     | 715 | 8   | 10  | 99.53           |
@@ -68,7 +74,7 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 | 95%           | 0.02      | 0.02   | 0.02     | 15  | 708 | 710 | 0.17            |
 
 
-**Class-wise Average Precision**
+**Class-wise Average Precision of YOLO v3-Tiny**
 | IoU Threshold | Manure (%) | Person (%) |
 |---------------|------------|------------|
 | 5%            | 99.86      | 99.20      |

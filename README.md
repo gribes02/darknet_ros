@@ -75,11 +75,12 @@ The accuracy of the trained models was tested on the test set, which was done on
 
 ![F1Score](images/f1_iou.png)
 
+**Overall Performance Metrics of YOLO v3-Tiny**
 <table>
 <tr>
 <td style="padding-right: 100px;">
 
-**Overall Performance Metrics of YOLO v3-Tiny**
+**YOLO v3-Tiny**
 | IoU Threshold | Precision | Recall | F1-score |
 |---------------|-----------|--------|----------|
 | 5%            | 0.99      | 0.99   | 0.99     |
@@ -102,9 +103,9 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 0.18      | 0.18   | 0.18     |
 | 95%           | 0.02      | 0.02   | 0.02     |
 
-<td style="padding-left: 100px;">
+<td>
 
-**Overall Performance Metrics of YOLO v3**
+**YOLO v3**
 | IoU Threshold | Precision | Recall | F1-score |
 |---------------|-----------|--------|----------|
 | 5%            | 1.00      | 0.99   | 0.99     |
@@ -178,6 +179,10 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 13.97      | 40.73      |
 | 95%           | 1.54       | 2.50       | -->
 
+## Conclusion
+The results have shown that due to the much smaller architecture of YOLO v3-Tiny, it is considerably faster than the standard YOLO v3. This speed advantage of YOLO v3-Tiny over YOLO v3 was found to be on average ... FPS on our robot. 
+
+However, as hypothesized, YOLO v3 performs detects the objects more precisely than YOLO v3-Tiny. Was was surprising is that both models perform equally well in identifying objects. However, YOLO v3 is more precise in setting the bounding boxes compared to YOLO v3-Tiny.
 
 ## Discussion and Limitations
 

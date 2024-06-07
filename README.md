@@ -44,7 +44,11 @@ To address this issue, the model was then run directly on the robot. Unfortunate
 
 To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. By taking better advantage of the robot's hardware, a much greater frame rate could be achieved. When running YOLO v3 on the robot using ncnn, an average frame rate of 3.92 FPS was achieved with a standard deviation of 0.47 FPS.
 
-![ObjectDetection](images/ObjectDetection.jpeg)
+<!-- ![ObjectDetection](images/ObjectDetection.jpeg) -->
+<p>
+    <img src="images/ObjectDetection.jpeg" alt>
+    <em>Figure 1: Detections of YOLO v3 on some images of the test set.</em>
+</p>
 
 <span style="color: red;"><strong>Add a table of the fps of YOLOv3 and tiny-YOLOv3</strong></span>
 
@@ -75,7 +79,12 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 0.18      | 0.18   | 0.18     | 127 | 596 | 598 | 5.07            |
 | 95%           | 0.02      | 0.02   | 0.02     | 15  | 708 | 710 | 0.17            | -->
 
-![F1Score](images/f1_iou.png)
+<!-- ![F1Score](images/f1_iou.png) -->
+
+<p>
+    <img src="images/f1_iou.png" alt>
+    <em>Figure 2: Plot of F1 score as function of the IoU threshold achieved by the YOLO v3 (green) and YOLO v3-Tiny (blue) models on the test set.</em>
+</p>
 
 ### Overall Performance Metrics
 <table>

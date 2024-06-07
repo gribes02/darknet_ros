@@ -195,6 +195,8 @@ The accuracy of the trained models was tested on the test set, which was done on
 ### Empiric observations
 Video 1 shows the real-time detections of the trained YOLO v3-Tiny network on the robot with an IoU threshold of 0.3. Note that the low frame rate is due to visualizing the bounding boxes, since the transmission of the frames from the robot to the laptop is quite slow. From the video can be observed that despite the low IoU threshold, there are no false positive detections. However, some false negative detections can be observed when the manure is far away. Additionally, the bounding boxes do not fit the detected objects very precisely. The bounding box for the person is for example slightly too big. This observation explains why the F1 score is quite small for large IoU thresholds and the F1 score is high for low thresholds. 
 
+Another important observation is that sometimes an object (manure) is detected correctly at one frame and then not detected the next frame, but then detected again in consecutive frames. For application is for example obstacle avoidance, this occurance can easily be solved using for example a kalman filter.
+
 <p>
     <img src="images/yolo.gif" alt>
     <em>Video 1: Video of detections by the trained YOLO v3-Tiny on the robot with an IoU threshold of 0.3. (The low frame rate is primarily due to the transmission of frames from the robot to the laptop)</em>

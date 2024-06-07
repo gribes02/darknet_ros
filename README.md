@@ -179,6 +179,9 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 13.97      | 40.73      |
 | 95%           | 1.54       | 2.50       | -->
 
+![Demo Video](images/yolo.mkv)
+
+
 ## Conclusion
 The results have shown that due to the much smaller architecture of YOLO v3-Tiny, it is considerably faster than the standard YOLO v3. This speed advantage of YOLO v3-Tiny over YOLO v3 was found to be on average ... FPS on our robot. 
 
@@ -199,6 +202,7 @@ However, there are definitely some points of improvement to our research. Firstl
 Additionally, potentially a better detection performance could have been achieved for both models if the models were pre-trained on large object detection datasets such as COCO and subsequently fine-tuned on our custom dataset.
 
 
-### Limitations
+<!-- ### Limitations -->
+
 
 ## References 

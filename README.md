@@ -190,7 +190,14 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 13.97      | 40.73      |
 | 95%           | 1.54       | 2.50       | -->
 
-![Demo Video](images/yolo.gif)
+<!-- ![Demo Video](images/yolo.gif) -->
+
+### Empiric observations
+
+<p>
+    <img src="images/yolo.gif" alt>
+    <em>Video 1: Video of detections by the trained YOLO v3-Tiny on the robot. (The low frame rate is primarily due to the transmission of frames from the robot to the laptop)</em>
+</p>
 
 
 ## Conclusion

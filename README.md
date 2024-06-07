@@ -65,7 +65,7 @@ A new dataset containing images of manure and people was created to train the mo
 Approximately 600 images were taken. However, to increase the size of the dataset, these images were augmented by increasing and decreasing the brightness by 30%. In total, the complete dataset constituted 1783 images. 80% Of these images were randomly assigned to the training set, whereas the other 20% was assigned to the test set. 
 
 ### Training 
-Both YOLO v3 and YOLO v3-Tiny were trained on the training set over 10.000 batches with a batch size of 64 images.
+The training of the models was done remotely on a GPU. Both YOLO v3 and YOLO v3-Tiny were trained on the training set over 10.000 batches with a batch size of 64 images. The initial learning rate was set to 0.001 and was decreased by a factor of 10 every 1000 iterations. Additionally, the models were trained using Stochastic Gradient Descent with a momentum of 0.9 and a weight decay of a factor 0.0005. 
 
 ### Method 
 Once the model is trained the best weights are obtained in the format .weights and a cfg file that denotes the architecture of the YOLO v3-tiny model. With those two files a test set can be ran either locally or on the robot 

@@ -35,14 +35,25 @@ Approximately 600 images were taken. However, to increase the size of the datase
 ### Training 
 Both YOLO v3 and YOLO v3-Tiny were trained on the training set over 10.000 batches with a batch size of 64 images.
 
+### Method 
+Once the model is trained the best weights are obtained in the format .weights and a cfg file that denotes the architecture of the YOLO v3-tiny model. With those two files a test set can be ran either locally or on the robot 
+
+1. **Local Testing**: To test the model locally, the aforementioned weights and config files were used. The model was ran on a set of test images to evaluate its performance. This involved loading the model with the configuration and weights files, and then performing inference on the test images to obtain detection results (bounding boxes and class labels).
+
+2. **Robot Deployment**: For real-time object detection on a robot, the model was ran on the robot itself. The process was similar to local testing but involved integrating the model into the robot’s software stack. This will be further explained in the next section 
+
 ### Robot Implementation 
-After obtaining the weights in the correct format (.weights) for the YOLO v3 models, the next step was to implement them on the robot. Initially, the darknetROS repository was utilized, as it supports the integration of YOLO v3 models with ROS and requires only the implementation of the correct weights. By running YOLO v3-Tiny directly on the robot via darknetROS, we achieved an average frame rate of merely 0.2 FPS.
+To run the model on the robot several things were done. 
 
-<!-- For reference, the model was first tested on a laptop to evaluate its performance. As shown in the figure below, the model consistently detected manure and people correctly. However, the frame rate achieved on the laptop was approximately 1.5 fps, resulting in noticeable lag during visualization. This low frame rate was the result of the lag in images being sent from the robot to the laptop.
+Initially, the darknetROS repository was utilized, as it supports the integration of YOLO v3 models with ROS and requires only the implementation of the correct weights. By running YOLO v3-Tiny directly on the robot via darknetROS, we achieved an average frame rate of merely 0.2 FPS.
 
-To address this issue, the model was then run directly on the robot. Unfortunately, this led to a significant drop in performance, with the frame rate plummeting to 0.2 fps, which was far from acceptable. -->
+To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. By taking better advantage of the robot's hardware, a much greater frame rate could be achieved. When running YOLO v3 on the robot using ncnn, an average frame rate of 3.92 FPS was achieved with a standard deviation of 0.47 FPS. 
 
-To improve performance, the darknet configuration was converted to ncnn, a high-performance neural network inference framework optimized for mobile platforms. By taking better advantage of the robot's hardware, a much greater frame rate could be achieved. When running YOLO v3 on the robot using ncnn, an average frame rate of 3.92 FPS was achieved with a standard deviation of 0.47 FPS.
+#### Model Size Requirements and Limitations
+
+One of the key factors to consider when implementing models on a robot is the size and complexity of the model. Larger models with more parameters generally require more computational power and memory, which can be a limitation for robots with limited hardware capabilities. For example, the robot used for this case is using an Orange Pi which has very limited computing power and thus can not run high end models in real time.
+
+Implementing smaller, optimized models on robots has significant cost benefits. By avoiding the need for powerful and expensive GPUs, the overall cost of the robotic system can be reduced. This makes it feasible to deploy advanced object detection capabilities in a wider range of applications, from consumer robots to industrial automation systems.
 
 <!-- ![ObjectDetection](images/ObjectDetection.jpeg) -->
 <p>
@@ -54,7 +65,11 @@ To improve performance, the darknet configuration was converted to ncnn, a high-
 
 
 ## Results
-The accuracy of the trained models was tested on the test set, which was done on a laptop. [Figure 1](#F1Score) shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds.  Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. However, the graph also shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny, as also indicated by the orange bars. This demonstrates that YOLO v3 more accurately places the bounding boxes than YOLO v3-Tiny. Hence, although both models classify the images equally well, YOLO v3 sets the bounding boxes more precisely.
+The accuracy of the trained models was tested on the test set, which was done on a laptop. [Figure 1](#F1Score) shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds.  Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. Nonetheless, the graph also shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny, as also indicated by the orange bars.
+
+Despite this, YOLO v3-Tiny offers comperable performance at lower IoU thresholds (around 5%-50%) while at the same time having a faster performance thus making it ideal for real-time obstacle detection.
+
+Therefore, these results demonstrate that having an IoU threshold between 5% and 50% leads to an identical performance between the 2 models. Thus, since false positives are not much of an issue an IoU threshold of 30% was selected when running on the robot with YOLO v3-Tiny. 
 
 <!-- **Overall Performance Metrics of YOLO v3-Tiny** -->
 <!-- | IoU Threshold | Precision | Recall | F1-score | TP  | FP  | FN  | Average mAP (%) |
@@ -86,7 +101,7 @@ The accuracy of the trained models was tested on the test set, which was done on
     <em>Figure 2: Plot of F1 score as function of the IoU threshold achieved by the YOLO v3 (green) and YOLO v3-Tiny (blue) models on the test set.</em>
 </p>
 
-### Overall Performance Metrics
+<!-- ### Overall Performance Metrics
 <table>
 <tr>
 <td style="padding-right: 100px;">
@@ -141,7 +156,7 @@ The accuracy of the trained models was tested on the test set, which was done on
 
 </td>
 </tr>
-</table>
+</table> -->
 
 <!-- **Class-wise Average Precision of YOLO v3-Tiny**
 | IoU Threshold | Manure (%) | Person (%) |
@@ -195,7 +210,14 @@ The accuracy of the trained models was tested on the test set, which was done on
 ### Empiric observations
 Video 1 shows the real-time detections of the trained YOLO v3-Tiny network on the robot with an IoU threshold of 0.3. Note that the low frame rate is due to visualizing the bounding boxes, since the transmission of the frames from the robot to the laptop is quite slow. From the video can be observed that despite the low IoU threshold, there are no false positive detections. However, some false negative detections can be observed when the manure is far away. Additionally, the bounding boxes do not fit the detected objects very precisely. The bounding box for the person is for example slightly too big. This observation explains why the F1 score is quite small for large IoU thresholds and the F1 score is high for low thresholds. 
 
-Another important observation is that sometimes an object (manure) is detected correctly at one frame and then not detected the next frame, but then detected again in consecutive frames. For application is for example obstacle avoidance, this occurance can easily be solved using for example a kalman filter.
+An important point to note is the fact that the model struggle to correctly detect manure when it is far away, resulting in a high number of false negatives. However, the detection accuracy improves significantly when the manure is closer, and the models detect it correctly all the way. This aspect is crucial to consider.
+
+For the specific case of obstacle avoidance, this limitation is less problematic. Obstacle avoidance primarily requires accurate detection when the obstacle is near, rather than far away. Therefore, not being able to correctly classify objects at a distance is not a significant issue in this context.
+
+However, for other applications that demand reliable object detection regardless of distance, this model may not be suitable. The tendency to miss distant objects could be a critical drawback in scenarios where detecting objects at all ranges is essential.
+
+Another important observation is that sometimes an object (manure) is detected correctly at one frame and then not detected the next frame, but then detected again in consecutive frames. For application such as obstacle avoidance, this occurance can easily be solved using for example a kalman filter.
+
 
 <p>
     <img src="images/yolo.gif" alt>

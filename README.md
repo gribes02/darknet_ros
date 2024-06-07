@@ -18,10 +18,12 @@ Authors: Guillem Ribes Espurz (5229154), Ricardo Ramautar (6109217)
 
 ## Introduction
 
-## Motivation 
+<!-- ## Motivation  -->
 In numerous applications, robots must operate in unregulated and dynamic environments filled with moving obstacles. To navigate in these challenging environments, robots require obstacle avoidance systems to ensure they do not collide. For instance, self-driving vehicles need to account for other vehicles, pedestrians, and cyclists, whose actions can be unpredictable. Consequently, the obstacle avoidance systems in these self-driving vehicles must be able to account for sudden, sporatic behavior. 
 
 Nowadays, in robotics in order to perform obstacle avoidance other sensors such as LiDAR or ultrasound are being used instead of cameras. This introduces an issue of not knowing what obstacle you are avoiding (no classification performed). In some cases you don’t want to avoid all obstacles, if for example it’s a cleaning robot you don’t want it to avoid litter you instead want it to pick it up. However, if the robot can not differentiate between litter or an actual obstacle then it doesn’t perform accordingly. Which is why cameras should be introduced for obstacle classification in order to perform obstacle avoidance. Nonetheless, the use of cameras introduces larger models to perform obstacle avoidance, which in turn require expensive GPUs. However, not all robots are equipped with such GPUs due to their cost and space constraints. A more efficient solution is to develop smaller, more efficient models that demand minimal computational power. This would enable real-time obstacle detection on any robot, regardless of its hardware.
+
+Hence, the objective of this blog is to find out whether real-time object detection is feasible in small robots that do not carry large GPUs. This will be done by implementing object detection detection models into the Mirte Master robot. For the detection model, both standard YOLO v3 and YOLO v3-Tiny will be implemented to identify performance differences between a very small network (YOLO v3-Tiny) and a larger network (YOLO v3). The performance of the models will be expressed in the frame rate that can be achieved during inference and the accuracy of the detections in terms of F1 score. The reason for these metrics is that the frame rate and accuracy of the detections will play an important role in whether the object detection in the robot performs sufficiently for application in for example obstacle avoidance.
 
 ## Implementation 
 

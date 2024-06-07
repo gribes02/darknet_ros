@@ -18,12 +18,44 @@ Authors: Guillem Ribes Espurz (5229154), Ricardo Ramautar (6109217)
 
 ## Introduction
 
-<!-- ## Motivation  -->
+<!-- ```
+1. Why is obstacle avoidance necessary?
+  2. What obstacle avoidance methods are currently being used?
+    3. Why can obstacle classification be useful/necessary?
+      4. Problem with object detection in robots
+        -> tradeoff between accuracy and speed
+        -> This is why we will test a larger and a smaller architecture
+          5. Why YOLO v3 and YOLO v3-Tiny?
+            6. Hypotheses
+``` -->
+
+<!-- ### 1. Why is obstacle avoidance necessary? -->
 In numerous applications, robots must operate in unregulated and dynamic environments filled with moving obstacles. To navigate in these challenging environments, robots require obstacle avoidance systems to ensure they do not collide. For instance, self-driving vehicles need to account for other vehicles, pedestrians, and cyclists, whose actions can be unpredictable. Consequently, the obstacle avoidance systems in these self-driving vehicles must be able to account for sudden, sporatic behavior. 
+
+<!-- ### 2. What obstacle avoidance methods are currently being used? / 3. Why can obstacle classification be useful/necessary? -->
+Nowadays, most robots implement obstacle avoidance using LiDAR or ultrasound sensors instead of cameras. Although these sensors have the benefit of taking very fast measurements, the downside of using these sensors is that they abstract the world into simple distance measurements. This introduces an issue for some robotic applications for which the robot needs to react differently to different types of objects. For example, an autonomous vehicle must drive more dilligently when there is a person nearby, but can drive normally when it is simply driving past a trash can. Hence, for such applications object detection using stereo cameras can be implemented instead of using LiDAR or ultrasound to determine not only the position of obstacles, but also the class of obstacles.
+
+<!-- ### 4. Problem with object detection in robots -->
+Yet, object detection introduces its own set of problems. The main problem with object detection using neural networks is the speed-accuracy tradeoff. Very accurate object detection architectures tend to be very deep and therefore have slow inference, whereas more shallow architectures allow for faster inference, but are less accurate in detecting objects. This trade-off is exacerbated in robots, which often do not carry large GPUs, due to space, weight, or budget limits. Especially when using object detection for obstacle avoidance, inference needs to happen in real-time, which necesitates the need for an object detection architecture with fast inference, but still a sufficiently good accuracy for it to be useful in obstacle avoidance. 
+
+<!-- ### 5. Why YOLO v3 and YOLO v3-Tiny? -->
+There are however some object detection models that are specifically designed for use in end devices such as robots. Most notably, are the YOLO models which are designed to be fast during inference without the needs for a powerful GPU. Although the newest version is YOLO v10, we decided to use the third version due to its compatibility with many different ROS packages.
+
+To investigate the speed-accuracy tradeoff between shallow and deeper architectures, we decided to test both the standard YOLO v3 model and the YOLO v3-Tiny. YOLO v3 consists of 53 convolutional layers and is therefore quite deep. YOLO v3-Tiny is meant to be a much faster version of the standard YOLO v3 model by only having 13 convolutional layers and by implementing max pooling layers. [1] States a 4x speed improvement over YOLO v3, but also highlights a loss in accuracy. By comparing these two models, we hope to get a better understanding of what the actual speed-accuracy trade-off is between the two models on our robot to find out if the higher accuracy of a large model warrants the drop in inference speed.
+
+<!-- ### 6. Hypotheses -->
+Overall, we expect the standard YOLO v3 model to result in less false detections and provide more accurate boundin boxes compared to YOLO v3-Tiny. However, we expect YOLO v3-Tiny to result in a significantly higher detection frequency. 
+
+<!-- ### 7. Conclusion -->
+Hence, the objective of this blog is to find out whether real-time object detection is feasible in small robots that do not carry large GPUs. This will be done by implementing object detection detection models into the Mirte Master robot. For the detection model, both standard YOLO v3 and YOLO v3-Tiny will be implemented to identify performance differences between a very small network (YOLO v3-Tiny) and a larger network (YOLO v3). The performance of the models will be expressed in the frame rate that can be achieved during inference and the accuracy of the detections in terms of F1 score. The reason for these metrics is that the frame rate and accuracy of the detections will play an important role in whether the object detection in the robot performs sufficiently for application in for example obstacle avoidance.
+
+
+<!-- ## Motivation  -->
+<!-- In numerous applications, robots must operate in unregulated and dynamic environments filled with moving obstacles. To navigate in these challenging environments, robots require obstacle avoidance systems to ensure they do not collide. For instance, self-driving vehicles need to account for other vehicles, pedestrians, and cyclists, whose actions can be unpredictable. Consequently, the obstacle avoidance systems in these self-driving vehicles must be able to account for sudden, sporatic behavior. 
 
 Nowadays, in robotics in order to perform obstacle avoidance other sensors such as LiDAR or ultrasound are being used instead of cameras. This introduces an issue of not knowing what obstacle you are avoiding (no classification performed). In some cases you don’t want to avoid all obstacles, if for example it’s a cleaning robot you don’t want it to avoid litter you instead want it to pick it up. However, if the robot can not differentiate between litter or an actual obstacle then it doesn’t perform accordingly. Which is why cameras should be introduced for obstacle classification in order to perform obstacle avoidance. Nonetheless, the use of cameras introduces larger models to perform obstacle avoidance, which in turn require expensive GPUs. However, not all robots are equipped with such GPUs due to their cost and space constraints. A more efficient solution is to develop smaller, more efficient models that demand minimal computational power. This would enable real-time obstacle detection on any robot, regardless of its hardware.
 
-Hence, the objective of this blog is to find out whether real-time object detection is feasible in small robots that do not carry large GPUs. This will be done by implementing object detection detection models into the Mirte Master robot. For the detection model, both standard YOLO v3 and YOLO v3-Tiny will be implemented to identify performance differences between a very small network (YOLO v3-Tiny) and a larger network (YOLO v3). The performance of the models will be expressed in the frame rate that can be achieved during inference and the accuracy of the detections in terms of F1 score. The reason for these metrics is that the frame rate and accuracy of the detections will play an important role in whether the object detection in the robot performs sufficiently for application in for example obstacle avoidance.
+Hence, the objective of this blog is to find out whether real-time object detection is feasible in small robots that do not carry large GPUs. This will be done by implementing object detection detection models into the Mirte Master robot. For the detection model, both standard YOLO v3 and YOLO v3-Tiny will be implemented to identify performance differences between a very small network (YOLO v3-Tiny) and a larger network (YOLO v3). The performance of the models will be expressed in the frame rate that can be achieved during inference and the accuracy of the detections in terms of F1 score. The reason for these metrics is that the frame rate and accuracy of the detections will play an important role in whether the object detection in the robot performs sufficiently for application in for example obstacle avoidance. -->
 
 ## Implementation 
 
@@ -249,3 +281,4 @@ Additionally, potentially a better detection performance could have been achieve
 
 
 ## References 
+[1] https://ieeexplore.ieee.org/document/9074315

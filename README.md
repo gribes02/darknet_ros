@@ -179,7 +179,7 @@ The accuracy of the trained models was tested on the test set, which was done on
 | 90%           | 13.97      | 40.73      |
 | 95%           | 1.54       | 2.50       | -->
 
-![Demo Video](images/yolo.mkv)
+![Demo Video](images/yolo.gif)
 
 
 ## Conclusion

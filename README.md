@@ -97,7 +97,7 @@ Implementing smaller, optimized models on robots has significant cost benefits. 
 | Model       | Frame Rate (FPS) | Standard Deviation (FPS) |
 |-------------|------------------:|-------------------------:|
 | YOLOv3      |              3.92 |                      0.47 |
-| YOLOv3 Tiny |              6.53 |                      0.53 |
+| YOLOv3 Tiny |              6.53 |                      0.36 |
 
 
 

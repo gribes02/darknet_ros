@@ -94,7 +94,11 @@ Implementing smaller, optimized models on robots has significant cost benefits. 
     <em>Figure 1: Detections of YOLO v3 on some images of the test set.</em>
 </p>
 
-<span style="color: red;"><strong>Add a table of the fps of YOLOv3 and tiny-YOLOv3</strong></span>
+| Model       | Frame Rate (FPS) | Standard Deviation (FPS) |
+|-------------|------------------:|-------------------------:|
+| YOLOv3      |              3.92 |                      0.47 |
+| YOLOv3 Tiny |              6.53 |                      0.53 |
+
 
 
 ## Results

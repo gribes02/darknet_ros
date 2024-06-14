@@ -95,15 +95,15 @@ Implementing smaller, optimized models on robots has significant cost benefits. 
     <em>Figure 1: Detections of YOLO v3 on some images of the test set.</em>
 </p>
 
+## Results
+The accuracy of the trained models was tested on the test set, which was done on a laptop. Figure 1 shows some of the results of YOLO v3 on the test set. Consequently, Figure 2 shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds. Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. Nonetheless, the graph also shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny, as also indicated by the orange bars. YOLO v3 is therefore more accurate in setting the bounding boxes than YOLO v3-Tiny.
+
 | Model       | Frame Rate (FPS) | Standard Deviation (FPS) |
 |-------------|------------------:|-------------------------:|
 | YOLO v3      |              3.92 |                      0.47 |
 | YOLO v3-Tiny |              6.53 |                      0.36 |
 
 *Table 1: Average frame rate achieved by YOLO v3 and YOLO v3-Tiny*
-
-## Results
-The accuracy of the trained models was tested on the test set, which was done on a laptop. Figure 1 shows some of the results of YOLO v3 on the test set. Consequently, Figure 2 shows the F1 score of both YOLO v3 (green) and YOLO v3-Tiny (blue) for a range of IoU thresholds. Additionally, the orange bars shows the difference between the two models. As can be seen from the graph, up until an IoU threshold of 50%, both models perform very well with an F1 score of approximately 0.99. This shows that both models are very effective in detecting the objects in question. However, from an IoU threshold of 50% onwards, the F1 scores of both models drop considerably. From this can be concluded that although effective in detecting objects, neither model is very accurate in setting the bounding boxes. Nonetheless, the graph also shows that YOLO v3 results in a noticeably higher F1 score for greater IoU scores compared to YOLO v3-Tiny, as also indicated by the orange bars. YOLO v3 is therefore more accurate in setting the bounding boxes than YOLO v3-Tiny.
 
 However, YOLO v3-tiny achieves a considerably higher inference rate than YOLO v3. As shown in Table 1, YOLO v3 achieved an average inference rate of 3.92 with a standard deviation of $\pm$0.47, whereas YOLO v3-Tiny achieved an average inference rate of 6.53 with a standard deviation of $\pm$0.36.
 

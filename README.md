@@ -14,7 +14,7 @@ Authors: Guillem Ribes Espurz (5229154), Ricardo Ramautar (6109217)
   - [Limitations](#limitations)
 - [References](#references)
     
-## Abstract
+<!-- ## Abstract -->
 
 ## Introduction
 

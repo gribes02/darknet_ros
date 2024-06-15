@@ -285,6 +285,9 @@ However, there are definitely some points of improvement to our research. Firstl
 
 Additionally, potentially a better detection performance could have been achieved for both models if the models were pre-trained on large object detection datasets such as COCO and subsequently fine-tuned on our custom dataset.
 
+## Running our code
+Everything we used to train and evaluate YOLO v3 and YOLO v3-Tiny can be found [in this repo]().
+
 
 <!-- ### Limitations -->
 
